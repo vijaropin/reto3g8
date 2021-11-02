@@ -70,10 +70,14 @@ public class ServiciosReservaciones {
         }).orElse(false);
         return aBoolean;
     }
-    public StatusReservas 
-reporteStatusServicio (){
-        List<Reservaciones>completed= metodosCrud.ReservacionStatusRepositorio("completed");
-        List<Reservaciones>cancelled= metodosCrud.ReservacionStatusRepositorio("cancelled");
+
+    /**
+     *
+     * @return
+     */
+    public StatusReservas reporteStatusServicio (){
+        List<Reservaciones>completed= metodosCrud.ReservacionesStatusRepositorio("completed");
+        List<Reservaciones>cancelled= metodosCrud.ReservacionesStatusRepositorio("cancelled");
         
         return new StatusReservas(completed.size(), cancelled.size() );
     }
@@ -90,7 +94,7 @@ public List<Reservaciones> reporteTiempoServicio (String datoA, String datoB) th
         }catch(ParseException evt){
             evt.printStackTrace();
         }if(datoUno.before(datoDos)){
-            return metodosCrud.ReservacionTiempoRepositorio(datoUno, datoDos);
+            return metodosCrud.ReservacionesTiempoRepositorio(datoUno, datoDos);
         }else{
             return new ArrayList<>();
         
